@@ -1,0 +1,43 @@
+
+<div class="container">
+
+    <div class="d-flex justify-content-center flex-column align-items-center">
+        <h3 class="mt-5">Ordene seus filmes favoritos de acordo com os de maiores bilheteria no mundo</h3>
+
+
+        <h4>Escolha quantos filmes você quer ordenar</h4>
+
+        <div class="d-flex justify-content-center">
+            <button class="mx-2 btn btn-primary" (click)="getLista(10)">10</button>
+            <button class="mx-2 btn btn-primary" (click)="getLista(20)">20</button>
+            <button class="mx-2 btn btn-primary" (click)="getLista(30)">30</button>
+            <button class="mx-2 btn btn-primary" (click)="getLista(40)">40</button>
+            <button class="mx-2 btn btn-primary" (click)="getLista(50)">50</button>
+
+        </div>
+
+        <div *ngIf="listaFilmes.length !=0" cdkDropList (cdkDropListDropped)="drop($event)" class="mt-5 example-list row">
+            <div class="example-box" *ngFor="let item of listaFilmes" cdkDrag>
+                <div class="col-1">{{item.id}}.</div>
+                <div class="col-6"><strong>{{item.name}}</strong> </div>
+                <div class="col-1">{{item.ano}}</div>
+                <div class="col-1">U${{item.bilheteria}} milhões</div>
+
+            </div>
+        </div>
+        <button *ngIf="listaFilmes.length !=0" class="my-4 btn btn-primary" (click)="getInversoes()">Contar inversões e semelhança</button>
+
+        <div *ngIf="this.similaridade!=-1 " class="pb-5">
+            <h5>Contagem de inversões: {{this.inversoes}}</h5>
+            <h5>Seu gosto pessoal é {{this.similaridade.toFixed(2) }}% parecido com a ordem das {{this.totalFilmes}} maiores bilheterias de filmes no mundo</h5>
+
+        </div>
+
+    </div>
+   
+
+
+
+
+</div>
+
